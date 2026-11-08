@@ -10,19 +10,11 @@
   "status",
   "page"
  ],
- "synced_utc": "2026-11-07T21:58:36Z",
- "count": 4,
+ "synced_utc": "2026-11-08T01:21:00Z",
+ "count": 12,
  "not_in_central": [
-  "EV-0223",
-  "EV-0224",
-  "EV-0225",
   "EV-0226",
-  "EV-0228",
-  "EV-0263",
-  "EV-0270",
   "EV-0274",
-  "EV-0278",
-  "EV-0286",
   "EV-0290",
   "EV-0295",
   "EV-0296",
@@ -285,6 +277,78 @@
    "date_sort": "1965",
    "status": "HELD",
    "page": "/research/evidence/ev-0216-1965-contract-condition-f-conveyance-25-december-1938/"
+  },
+  "EV-0223": {
+   "id": "EV-0223",
+   "kind": "evidence",
+   "title": "1881 census: reported Llandough Home Farm / R-W-S-S Farm wording",
+   "date_display": null,
+   "date_sort": null,
+   "status": null,
+   "page": "https://research.bucklerfamily.estate/evidence/ev-0223-1881-census-name-variant/"
+  },
+  "EV-0224": {
+   "id": "EV-0224",
+   "kind": "evidence",
+   "title": "1881 census, Llandough, RG11/5288 page 2: “Llandough Home Farm”, John Williams, farmer",
+   "date_display": "Census night, 3 April 1881",
+   "date_sort": "1881-04-03",
+   "status": "HELD (photo). Transcribed by Tab from the photo, 19 Oct 2026.",
+   "page": "https://research.bucklerfamily.estate/evidence/ev-0224-1881-census-llandough-rg11-5288/"
+  },
+  "EV-0225": {
+   "id": "EV-0225",
+   "kind": "evidence",
+   "title": "Trade directories, 1868–1901: John Williams at “Great House”, Llandough",
+   "date_display": "1868, 1875, 1880, 1887, 1891 and 1901",
+   "date_sort": "1868",
+   "status": "HELD (public online copy). Quotes read from the linked pages, 19 Oct 2026.",
+   "page": "https://research.bucklerfamily.estate/evidence/ev-0225-trade-directories-1868-1901-john-williams-great-house/"
+  },
+  "EV-0228": {
+   "id": "EV-0228",
+   "kind": "evidence",
+   "title": "Llandough Farm and the Rees family, 1841–1910 (a separate farm, recorded for disambiguation)",
+   "date_display": "c.1841; 1865; 1886; 1898; 1910",
+   "date_sort": "1841",
+   "status": "HELD (public online copies).",
+   "page": "https://research.bucklerfamily.estate/evidence/ev-0228-llandough-farm-rees-family-1841-1910/"
+  },
+  "EV-0263": {
+   "id": "EV-0263",
+   "kind": "evidence",
+   "title": "Commons Registration Act 1965 s.5 and SI 1968/989: registrations were publicised by public notice only; Glamorgan County Council’s London Gazette notices of 22 October 1968 and 24 October 1969; second objection period for VG41 ran 1 May 1970 – 31 July 1972",
+   "date_display": "1968–1972 (objection period ended 31 July 1972)",
+   "date_sort": "1972-07-31",
+   "status": "HELD (texts read 19 Oct 2026); the 1970 Glamorgan second-period notice listing VG41 NOT FOUND (Gazette OCR)",
+   "page": "https://research.bucklerfamily.estate/evidence/ev-0263-commons-registration-1965-publicity-glamorgan-notices-vg41/"
+  },
+  "EV-0270": {
+   "id": "EV-0270",
+   "kind": "evidence",
+   "title": "Press set, 1988–1995: BP Pension Fund sold about 1,300 acres of Welsh land to Intercontinental Land & Development (Cardiff) Ltd for £29,375,400 (Oct 1988); the Land Authority for Wales bought plots at Llandough (Nov 1988), later passing Leckwith/Llandough woods to South Glamorgan County Council (1994–95)",
+   "date_display": "October 1988 – 1995",
+   "date_sort": "1988-10",
+   "status": "SOURCE PENDING (snippets only; full articles not read)",
+   "page": "https://research.bucklerfamily.estate/evidence/ev-0270-bp-pension-fund-1988-sale-intercontinental-law-llandough-press/"
+  },
+  "EV-0278": {
+   "id": "EV-0278",
+   "kind": "evidence",
+   "title": "National Library of Wales, Bute Estate records (NRA 581 Stuart): “LLANDOUGH MANOR, rentals, with Cogan and other manors”, 1808–1881 (R 6/27–45), and “LLANDOUGH MANOR, presentments, with other manors”, 1793–1934 (M 17/110–314)",
+   "date_display": "1793–1934 (presentments); 1808–1881 (rentals)",
+   "date_sort": "1793",
+   "status": "SOURCE PENDING (catalogue entries read 21 Oct 2026; volumes not seen)",
+   "page": "https://research.bucklerfamily.estate/evidence/ev-0278-nlw-bute-estate-records-llandough-manor-rentals-1808-1881-r-6-27-45-and-presentmen/"
+  },
+  "EV-0286": {
+   "id": "EV-0286",
+   "kind": "evidence",
+   "title": "Western Mail, 17 November 1942, p.2, auction advertisement: “IMPORTANT SALE OF LIVE AND DEAD FARMING STOCK. GREAT HOUSE FARM, LLANDOUGH” (search snippet only; parish not stated in the snippet)",
+   "date_display": "17 November 1942",
+   "date_sort": "1942-11-17",
+   "status": "SOURCE PENDING (snippet read 21 Oct 2026; advertisement not read)",
+   "page": "https://research.bucklerfamily.estate/evidence/ev-0286-snippet-only-western-mail-17-nov-1942-p-2-important-sale-of-live-and-dead-farming/"
   }
  }
 }
