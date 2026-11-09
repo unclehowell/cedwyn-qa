@@ -249,7 +249,10 @@ def detail_record(item: dict[str, Any]) -> dict[str, Any]:
     for field in fields:
         value = full.get(field)
         if field == "data" and isinstance(value, dict):
-            result[field] = json.loads(clean_text(value, 5000) or "{}")
+            result[field] = {
+                str(k)[:100]: clean_text(v, 900)
+                for k, v in list(value.items())[:40]
+            }
         elif field in ("body", "summary", "interpretation"):
             result[field] = clean_text(value, 14000 if field == "body" else 4500)
         else:
@@ -546,6 +549,9 @@ def apply_proposals(proposals: list[dict[str, Any]], records: list[dict[str, Any
         answer = clean_text(proposal.get("answer"), 6500).strip()
         if status in {"pending", "no reply", "open"}:
             answer = ""
+        if status in {"answered", "partly answered", "not held", "refused", "redirected", "contested", "statement only"} and not answer:
+            skipped.append({"source_id": "model-output", "reason": "Skipped an answered/refusal status without a source-grounded answer summary."})
+            continue
         asked = valid_iso(proposal.get("asked"))
         answered = valid_iso(proposal.get("answered"))
         due = valid_iso(proposal.get("due"))
@@ -579,7 +585,7 @@ def apply_proposals(proposals: list[dict[str, Any]], records: list[dict[str, Any
             added += 1
             continue
         before = json.dumps(match, ensure_ascii=False, sort_keys=True)
-        if question and len(question) > len(str(match.get("question") or "")):
+        if not match.get("question"):
             match["question"] = question
         if body:
             match["body"] = body
@@ -608,8 +614,10 @@ def apply_proposals(proposals: list[dict[str, Any]], records: list[dict[str, Any
                 old_sources.append(source)
                 source_index.add(key)
         match["sources"] = old_sources
-        match["source_ids"] = sorted(set(match.get("source_ids", []) + source_ids))
-        match["source_apps"] = sorted(set(match.get("source_apps", []) + source_apps))
+        old_ids = match.get("source_ids") if isinstance(match.get("source_ids"), list) else []
+        old_apps = match.get("source_apps") if isinstance(match.get("source_apps"), list) else []
+        match["source_ids"] = sorted(set(old_ids + source_ids))
+        match["source_apps"] = sorted(set(old_apps + source_apps))
         after = json.dumps(match, ensure_ascii=False, sort_keys=True)
         if after != before:
             updated += 1
