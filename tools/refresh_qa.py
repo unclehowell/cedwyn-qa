@@ -71,8 +71,8 @@ Use "not held" only when the body expressly says it holds no responsive record. 
 Summarise what a reply actually says, identify questions answered or left unanswered, and include material qualifications, exemptions, search scope, and referrals where recorded.
 Never infer motive, concealment, wrongdoing, liability, or a legal conclusion. Attribute an institution's statement to that institution; distinguish it from an independently established fact. Use restrained, neutral language.
 Do not expose personal email addresses, phone numbers, private residential details, or irrelevant personal data. Prefer public bodies, official reference numbers, public record identifiers, and dates.
-Do not duplicate an existing Q&A item. If an existing candidate is the same question/request, use its exact id as match_id and propose only a material, source-supported update. Do not replace a substantive answer with an empty answer.
-Use only source IDs and source URLs included in this input. Every proposal must cite at least one supplied source. Never fabricate a citation, reference, date, or link.
+Do not duplicate an existing Q&A item. Existing candidates are supplied only as the current Q&A baseline for matching and change detection; they are not independent evidence and must not substantiate a new answer by themselves. If an existing candidate is the same question/request, use its exact id as match_id and propose only a material, source-supported update. Do not replace a substantive answer with an empty answer.
+Use only source IDs and source URLs included in the current catalogue API records or allowlisted app API/MCP results. Every new or updated proposal must cite at least one such current source. Catalogue repository metadata and existing Q&A candidates are discovery/reconciliation aids, not substantive evidence. Never fabricate a citation, reference number, date, or link.
 If evidence is ambiguous, omit the item and explain why in skipped[]. If a new question is explicit but no reply is evidenced, publish it with status pending/open and an empty answer; do not invent an answer.
 
 Return valid JSON only with exactly these top-level keys:
