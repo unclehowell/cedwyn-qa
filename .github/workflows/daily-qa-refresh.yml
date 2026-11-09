@@ -29,6 +29,11 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Compile the refresh agent and validate the current Q&A snapshot
+        run: |
+          python -m py_compile tools/refresh_qa.py
+          python tools/refresh_qa.py --validate-only
+
       - name: Read the catalogue and public app MCP sources; reconcile Q&A
         run: python tools/refresh_qa.py
 
