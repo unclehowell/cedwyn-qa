@@ -273,7 +273,8 @@ def select_catalogue_records(items: list[dict[str, Any]], kb: dict[str, Any],
     if last_success is None:
         generated = (kb.get("meta") or {}).get("generated")
         last_success = parse_date(generated) or dt.datetime(2026, 10, 19, tzinfo=dt.timezone.utc)
-    versions = state.get("catalogue_versions") or {}
+    versions = state.setdefault("catalogue_versions", {})
+    bootstrap = not bool(state.get("last_success_at"))
     current_source_ids = set()
     for q in kb.get("items", []):
         for sid in q.get("source_ids", []) if isinstance(q.get("source_ids"), list) else []:
@@ -289,9 +290,16 @@ def select_catalogue_records(items: list[dict[str, Any]], kb: dict[str, Any],
         updated = item_updated(item)
         recent = bool(updated and updated >= last_success)
         is_new_relevant = rid not in current_source_ids and is_relevant_stub(item)
-        changed = versions.get(rid) != str(item.get("updated") or item.get("rev") or item.get("title") or "")
-        if (recent or (is_new_relevant and changed)) and (is_relevant_stub(item) or recent):
-            chosen.append(item)
+        marker = str(item.get("updated") or item.get("rev") or item.get("title") or "")
+        changed = versions.get(rid) != marker
+        relevant = is_relevant_stub(item)
+        if bootstrap and relevant and not recent:
+            # Seed older catalogue rows as seen: the first run only backfills items
+            # changed since the existing Q&A snapshot, not the entire historic catalogue.
+            versions.setdefault(rid, marker)
+        if recent or (not bootstrap and is_new_relevant and changed):
+            if relevant or recent:
+                chosen.append(item)
     chosen.sort(key=lambda x: item_updated(x) or dt.datetime.min.replace(tzinfo=dt.timezone.utc), reverse=True)
     if len(chosen) > MAX_CHANGED_RECORDS:
         raise RuntimeError(
