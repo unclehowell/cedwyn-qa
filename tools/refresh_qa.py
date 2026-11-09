@@ -515,7 +515,9 @@ def norm(value: Any) -> str:
 def find_duplicate(proposal: dict[str, Any], items: list[dict[str, Any]]) -> dict[str, Any] | None:
     match_id = proposal.get("match_id")
     if match_id:
-        return next((x for x in items if x.get("id") == match_id), None)
+        exact_id = next((x for x in items if x.get("id") == match_id), None)
+        if exact_id is not None:
+            return exact_id
     q = norm(proposal.get("question"))
     body = norm(proposal.get("body"))
     ref = norm(proposal.get("reference"))
