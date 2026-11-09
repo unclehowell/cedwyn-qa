@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "catalogue_repository": "unclehowell/cedwyn-catalogue",
+  "catalogue_api": "https://cedwyn.bucklerfamily.estate/api/catalogue",
+  "catalogue_web": "https://bucklerfamily.estate/catalogue/",
+  "scope": "Read-only catalogue records and read-only public WebMCP results. No inbox, private draft, CRM, or unrelated repository sources.",
+  "app_mcp": [
+    {
+      "id": "wdtk",
+      "name": "FOI Requests",
+      "url": "https://bucklerfamily.estate/wdtk/api/mcp"
+    },
+    {
+      "id": "authorities",
+      "name": "Public Authorities",
+      "url": "https://bucklerfamily.estate/authorities/api/mcp"
+    },
+    {
+      "id": "review",
+      "name": "Independent Review",
+      "url": "https://bucklerfamily.estate/review/api/mcp"
+    },
+    {
+      "id": "research",
+      "name": "Research Library",
+      "url": "https://bucklerfamily.estate/research/api/mcp"
+    },
+    {
+      "id": "dartboard",
+      "name": "Disclosure Dartboard",
+      "url": "https://bucklerfamily.estate/dartboard/api/mcp"
+    },
+    {
+      "id": "wiki",
+      "name": "Legal Wiki and Evidence",
+      "url": "https://bucklerfamily.estate/wiki/api/mcp"
+    },
+    {
+      "id": "docs",
+      "name": "Docs and Evidence Catalogue",
+      "url": "https://bucklerfamily.estate/docs/api/mcp"
+    }
+  ]
+}
