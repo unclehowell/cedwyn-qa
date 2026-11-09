@@ -40,5 +40,10 @@
       "name": "Docs and Evidence Catalogue",
       "url": "https://bucklerfamily.estate/docs/api/mcp"
     }
+  ],
+  "catalogue_repo_files": [
+    "README.md",
+    "sources.json",
+    "sources-books.json"
   ]
 }
