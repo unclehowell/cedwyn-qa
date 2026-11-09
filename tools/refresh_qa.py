@@ -297,9 +297,8 @@ def select_catalogue_records(items: list[dict[str, Any]], kb: dict[str, Any],
             # Seed older catalogue rows as seen: the first run only backfills items
             # changed since the existing Q&A snapshot, not the entire historic catalogue.
             versions.setdefault(rid, marker)
-        if recent or (not bootstrap and is_new_relevant and changed):
-            if relevant or recent:
-                chosen.append(item)
+        if (recent and relevant) or (not bootstrap and is_new_relevant and changed):
+            chosen.append(item)
     chosen.sort(key=lambda x: item_updated(x) or dt.datetime.min.replace(tzinfo=dt.timezone.utc), reverse=True)
     if len(chosen) > MAX_CHANGED_RECORDS:
         raise RuntimeError(
