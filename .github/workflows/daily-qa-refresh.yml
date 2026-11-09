@@ -1,0 +1,49 @@
+name: Daily Q&A refresh
+
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: daily-qa-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out the Q&A repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Read the catalogue and public app MCP sources; reconcile Q&A
+        run: python tools/refresh_qa.py
+
+      - name: Validate the published Q&A and API datasets
+        run: python tools/refresh_qa.py --validate-only
+
+      - name: Commit the daily release to main
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add static/qa/kb.json static/qa/api/qa.json automation/state.json automation/last-run.json
+          if git diff --cached --quiet; then
+            echo "No files changed; nothing to publish."
+            exit 0
+          fi
+          git commit -m "qa: daily source-checked refresh"
+          git push origin HEAD:main
