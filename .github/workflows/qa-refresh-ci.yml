@@ -1,0 +1,39 @@
+name: Q&A refresh validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/refresh_qa.py"
+      - "static/qa/kb.json"
+      - "static/qa/api/qa.json"
+      - "static/qa/functions/api/**"
+      - "automation/**"
+      - ".github/workflows/qa-refresh-ci.yml"
+      - ".github/workflows/daily-qa-refresh.yml"
+  pull_request:
+    paths:
+      - "tools/refresh_qa.py"
+      - "static/qa/kb.json"
+      - "static/qa/api/qa.json"
+      - "static/qa/functions/api/**"
+      - "automation/**"
+      - ".github/workflows/qa-refresh-ci.yml"
+      - ".github/workflows/daily-qa-refresh.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile the daily agent
+        run: python -m py_compile tools/refresh_qa.py
+      - name: Validate Q&A and API snapshot consistency
+        run: python tools/refresh_qa.py --validate-only
