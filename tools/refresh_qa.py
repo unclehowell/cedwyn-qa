@@ -730,7 +730,10 @@ def main() -> int:
     usage_total = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
     all_skipped: list[dict[str, str]] = []
     for index, batch in enumerate(batches):
-        apps_for_batch = app_sources if index == 0 else []
+        # Keep the explicitly allowlisted app API/MCP responses in every model
+        # batch so catalogue records in later batches are reconciled against the
+        # same read-only cross-app context, not just the first ten records.
+        apps_for_batch = app_sources
         candidates_for_batch = existing_candidates(batch, apps_for_batch, kb["items"])
         parsed = run_model(batch, apps_for_batch, candidates_for_batch, oidc)
         model_used = parsed.get("_model") or model_used
