@@ -232,7 +232,7 @@ def catalogue_list() -> list[dict[str, Any]]:
 
 def detail_record(item: dict[str, Any]) -> dict[str, Any]:
     record_id = str(item.get("id", "")).strip()
-    if not re.fullmatch(r"[A-Z]{2}-\d{3,4}|[A-Z]{2}-\d{8}-[A-Z0-9-]+", record_id, re.I):
+    if not re.fullmatch(r"[A-Z]{2,3}-\d{3,4}|[A-Z]{2,3}-\d{8}-[A-Z0-9-]+", record_id, re.I):
         raise RuntimeError(f"Catalogue returned an unexpected record id: {record_id[:80]}")
     try:
         detail = json_request(f"{CATALOGUE_API}/{urllib.parse.quote(record_id, safe='')}")
